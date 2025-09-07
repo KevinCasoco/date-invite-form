@@ -189,19 +189,30 @@
 
         const templateParams = {
         Name: name,
-        RescheduleDate: resched, // today’s date by default
+        RescheduleDate: resched, 
         Feedback: feedback
     };
 
     emailjs.send("service_3k1euok", "template_r47xajl", templateParams)
-      .then(() => {
-        alert("Your response has been sent successfully 💌");
-        document.getElementById("inviteForm").reset();
+        .then(() => {
+            swal({
+            title: "Success 💌",
+            text: "I can’t wait to play duo both with you once again! 🥺🎮",
+            icon: "success",
+            button: "OK ✅",
+            className: "swal-custom"
+            });
+            document.getElementById("inviteForm").reset();
 
-        $(".datepicker").datepicker("setDate", new Date());
-      }, (err) => {
-        alert("Failed to send. Error: " + JSON.stringify(err));
-      });
+            $(".datepicker").datepicker("setDate", new Date());
+        }, (err) => {
+            swal({
+            title: "Oops! 😢",
+            text: "Failed to send. Error: " + JSON.stringify(err),
+            icon: "error",
+            button: "Try Again"
+            });
+        });
     }
   </script>
 </body>
